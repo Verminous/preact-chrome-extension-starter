@@ -4,7 +4,8 @@
   "description": "Scaffolding for a Chrome extension built with [Preact](https://preactjs.com).",
   "main": "index.js",
   "scripts": {
-    "build": "webpack && npm run copy:dist",
+    "build": "webpack",
+    "start": "webpack --watch",
     "copy:dist": "cp ./src/popup.html manifest.json ./dist"
   },
   "keywords": [],
@@ -16,12 +17,14 @@
     "@babel/preset-env": "^7.5.5",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^6.0.3",
     "css-loader": "^3.2.0",
-    "node-sass": "^4.12.0",
+    "html-webpack-plugin": "4",
+    "node-sass": "^9.0.0",
     "resolve-url-loader": "^3.1.0",
-    "sass-loader": "^8.0.0",
+    "sass-loader": "^13.3.2",
     "style-loader": "^1.0.0",
-    "webpack": "^4.39.3",
+    "webpack": "^5.0.0",
     "webpack-cli": "^3.3.7"
   },
   "dependencies": {

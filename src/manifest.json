@@ -1,10 +1,10 @@
 {
+  "manifest_version": 3,
   "name": "Chrome Extension with Preact and Webpack",
   "description": "",
   "version": "0.0.0.1",
-  "browser_action": {
-    "default_title": "My Chrome Extension",
+  "action": {
+    "default_title": "My Preact Extension",
     "default_popup": "popup.html"
-  },
-  "manifest_version": 3
+  }
 }
