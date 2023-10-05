@@ -1,916 +1,167 @@
-(() => {
-  var e = {
-      182: (e, t, n) => {
-        (t = n(645)(!1)).push([
-          e.id,
-          "#app-root{width:400px;height:75px;padding:2px}#app-root h1{text-align:center;color:darkblue;font-weight:bold;font-family:Helvetica;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,0.1),0 0 5px rgba(0,0,0,0.1),0 1px 3px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2),0 5px 10px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.2),0 20px 20px rgba(0,0,0,0.15)}\n",
-          "",
-        ]),
-          (e.exports = t);
-      },
-      645: (e) => {
-        "use strict";
-        e.exports = function (e) {
-          var t = [];
-          return (
-            (t.toString = function () {
-              return this.map(function (t) {
-                var n = (function (e, t) {
-                  var n,
-                    r,
-                    o,
-                    i = e[1] || "",
-                    a = e[3];
-                  if (!a) return i;
-                  if (t && "function" == typeof btoa) {
-                    var c =
-                        ((n = a),
-                        (r = btoa(
-                          unescape(encodeURIComponent(JSON.stringify(n)))
-                        )),
-                        (o =
-                          "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(
-                            r
-                          )),
-                        "/*# ".concat(o, " */")),
-                      l = a.sources.map(function (e) {
-                        return "/*# sourceURL="
-                          .concat(a.sourceRoot || "")
-                          .concat(e, " */");
-                      });
-                    return [i].concat(l).concat([c]).join("\n");
-                  }
-                  return [i].join("\n");
-                })(t, e);
-                return t[2] ? "@media ".concat(t[2], " {").concat(n, "}") : n;
-              }).join("");
-            }),
-            (t.i = function (e, n, r) {
-              "string" == typeof e && (e = [[null, e, ""]]);
-              var o = {};
-              if (r)
-                for (var i = 0; i < this.length; i++) {
-                  var a = this[i][0];
-                  null != a && (o[a] = !0);
-                }
-              for (var c = 0; c < e.length; c++) {
-                var l = [].concat(e[c]);
-                (r && o[l[0]]) ||
-                  (n &&
-                    (l[2]
-                      ? (l[2] = "".concat(n, " and ").concat(l[2]))
-                      : (l[2] = n)),
-                  t.push(l));
-              }
-            }),
-            t
-          );
-        };
-      },
-      283: (e, t, n) => {
-        var r = n(379),
-          o = n(182);
-        "string" == typeof (o = o.__esModule ? o.default : o) &&
-          (o = [[e.id, o, ""]]);
-        r(o, { insert: "head", singleton: !1 }), (e.exports = o.locals || {});
-      },
-      379: (e, t, n) => {
-        "use strict";
-        var r,
-          o = (function () {
-            var e = {};
-            return function (t) {
-              if (void 0 === e[t]) {
-                var n = document.querySelector(t);
-                if (
-                  window.HTMLIFrameElement &&
-                  n instanceof window.HTMLIFrameElement
-                )
-                  try {
-                    n = n.contentDocument.head;
-                  } catch (e) {
-                    n = null;
-                  }
-                e[t] = n;
-              }
-              return e[t];
-            };
-          })(),
-          i = [];
-        function a(e) {
-          for (var t = -1, n = 0; n < i.length; n++)
-            if (i[n].identifier === e) {
-              t = n;
-              break;
-            }
-          return t;
-        }
-        function c(e, t) {
-          for (var n = {}, r = [], o = 0; o < e.length; o++) {
-            var c = e[o],
-              l = t.base ? c[0] + t.base : c[0],
-              u = n[l] || 0,
-              s = "".concat(l, " ").concat(u);
-            n[l] = u + 1;
-            var p = a(s),
-              f = { css: c[1], media: c[2], sourceMap: c[3] };
-            -1 !== p
-              ? (i[p].references++, i[p].updater(f))
-              : i.push({ identifier: s, updater: h(f, t), references: 1 }),
-              r.push(s);
-          }
-          return r;
-        }
-        function l(e) {
-          var t = document.createElement("style"),
-            r = e.attributes || {};
-          if (void 0 === r.nonce) {
-            var i = n.nc;
-            i && (r.nonce = i);
-          }
-          if (
-            (Object.keys(r).forEach(function (e) {
-              t.setAttribute(e, r[e]);
-            }),
-            "function" == typeof e.insert)
-          )
-            e.insert(t);
-          else {
-            var a = o(e.insert || "head");
-            if (!a)
-              throw new Error(
-                "Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid."
-              );
-            a.appendChild(t);
-          }
-          return t;
-        }
-        var u,
-          s =
-            ((u = []),
-            function (e, t) {
-              return (u[e] = t), u.filter(Boolean).join("\n");
-            });
-        function p(e, t, n, r) {
-          var o = n
-            ? ""
-            : r.media
-            ? "@media ".concat(r.media, " {").concat(r.css, "}")
-            : r.css;
-          if (e.styleSheet) e.styleSheet.cssText = s(t, o);
-          else {
-            var i = document.createTextNode(o),
-              a = e.childNodes;
-            a[t] && e.removeChild(a[t]),
-              a.length ? e.insertBefore(i, a[t]) : e.appendChild(i);
-          }
-        }
-        function f(e, t, n) {
-          var r = n.css,
-            o = n.media,
-            i = n.sourceMap;
-          if (
-            (o ? e.setAttribute("media", o) : e.removeAttribute("media"),
-            i &&
-              "undefined" != typeof btoa &&
-              (r +=
-                "\n/*# sourceMappingURL=data:application/json;base64,".concat(
-                  btoa(unescape(encodeURIComponent(JSON.stringify(i)))),
-                  " */"
-                )),
-            e.styleSheet)
-          )
-            e.styleSheet.cssText = r;
-          else {
-            for (; e.firstChild; ) e.removeChild(e.firstChild);
-            e.appendChild(document.createTextNode(r));
-          }
-        }
-        var d = null,
-          v = 0;
-        function h(e, t) {
-          var n, r, o;
-          if (t.singleton) {
-            var i = v++;
-            (n = d || (d = l(t))),
-              (r = p.bind(null, n, i, !1)),
-              (o = p.bind(null, n, i, !0));
-          } else
-            (n = l(t)),
-              (r = f.bind(null, n, t)),
-              (o = function () {
-                !(function (e) {
-                  if (null === e.parentNode) return !1;
-                  e.parentNode.removeChild(e);
-                })(n);
-              });
-          return (
-            r(e),
-            function (t) {
-              if (t) {
-                if (
-                  t.css === e.css &&
-                  t.media === e.media &&
-                  t.sourceMap === e.sourceMap
-                )
-                  return;
-                r((e = t));
-              } else o();
-            }
-          );
-        }
-        e.exports = function (e, t) {
-          (t = t || {}).singleton ||
-            "boolean" == typeof t.singleton ||
-            (t.singleton =
-              (void 0 === r &&
-                (r = Boolean(
-                  window && document && document.all && !window.atob
-                )),
-              r));
-          var n = c((e = e || []), t);
-          return function (e) {
-            if (
-              ((e = e || []),
-              "[object Array]" === Object.prototype.toString.call(e))
-            ) {
-              for (var r = 0; r < n.length; r++) {
-                var o = a(n[r]);
-                i[o].references--;
-              }
-              for (var l = c(e, t), u = 0; u < n.length; u++) {
-                var s = a(n[u]);
-                0 === i[s].references && (i[s].updater(), i.splice(s, 1));
-              }
-              n = l;
-            }
-          };
-        };
-      },
-    },
-    t = {};
-  function n(r) {
-    var o = t[r];
-    if (void 0 !== o) return o.exports;
-    var i = (t[r] = { id: r, exports: {} });
-    return e[r](i, i.exports, n), i.exports;
-  }
-  (n.nc = void 0),
-    (() => {
-      "use strict";
-      var e = function () {},
-        t = {},
-        r = [],
-        o = [];
-      function i(n, i) {
-        var a,
-          c,
-          l,
-          u,
-          s = o;
-        for (u = arguments.length; u-- > 2; ) r.push(arguments[u]);
-        for (
-          i &&
-          null != i.children &&
-          (r.length || r.push(i.children), delete i.children);
-          r.length;
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
-        )
-          if ((c = r.pop()) && void 0 !== c.pop)
-            for (u = c.length; u--; ) r.push(c[u]);
-          else
-            "boolean" == typeof c && (c = null),
-              (l = "function" != typeof n) &&
-                (null == c
-                  ? (c = "")
-                  : "number" == typeof c
-                  ? (c = String(c))
-                  : "string" != typeof c && (l = !1)),
-              l && a ? (s[s.length - 1] += c) : s === o ? (s = [c]) : s.push(c),
-              (a = l);
-        var p = new e();
-        return (
-          (p.nodeName = n),
-          (p.children = s),
-          (p.attributes = null == i ? void 0 : i),
-          (p.key = null == i ? void 0 : i.key),
-          void 0 !== t.vnode && t.vnode(p),
-          p
-        );
-      }
-      function a(e, t) {
-        for (var n in t) e[n] = t[n];
-        return e;
-      }
-      function c(e, t) {
-        e && ("function" == typeof e ? e(t) : (e.current = t));
-      }
-      var l =
-          "function" == typeof Promise
-            ? Promise.resolve().then.bind(Promise.resolve())
-            : setTimeout,
-        u = /acit|ex(?:s|g|n|p|$)|rph|ows|mnc|ntw|ine[ch]|zoo|^ord/i,
-        s = [];
-      function p(e) {
-        !e._dirty &&
-          (e._dirty = !0) &&
-          1 == s.push(e) &&
-          (t.debounceRendering || l)(f);
-      }
-      function f() {
-        for (var e; (e = s.pop()); ) e._dirty && M(e);
-      }
-      function d(e, t, n) {
-        return "string" == typeof t || "number" == typeof t
-          ? void 0 !== e.splitText
-          : "string" == typeof t.nodeName
-          ? !e._componentConstructor && v(e, t.nodeName)
-          : n || e._componentConstructor === t.nodeName;
-      }
-      function v(e, t) {
-        return (
-          e.normalizedNodeName === t ||
-          e.nodeName.toLowerCase() === t.toLowerCase()
-        );
-      }
-      function h(e) {
-        var t = a({}, e.attributes);
-        t.children = e.children;
-        var n = e.nodeName.defaultProps;
-        if (void 0 !== n) for (var r in n) void 0 === t[r] && (t[r] = n[r]);
-        return t;
-      }
-      function m(e) {
-        var t = e.parentNode;
-        t && t.removeChild(e);
-      }
-      function b(e, t, n, r, o) {
-        if (("className" === t && (t = "class"), "key" === t));
-        else if ("ref" === t) c(n, null), c(r, e);
-        else if ("class" !== t || o)
-          if ("style" === t) {
-            if (
-              ((r && "string" != typeof r && "string" != typeof n) ||
-                (e.style.cssText = r || ""),
-              r && "object" == typeof r)
-            ) {
-              if ("string" != typeof n)
-                for (var i in n) i in r || (e.style[i] = "");
-              for (var i in r)
-                e.style[i] =
-                  "number" == typeof r[i] && !1 === u.test(i)
-                    ? r[i] + "px"
-                    : r[i];
-            }
-          } else if ("dangerouslySetInnerHTML" === t)
-            r && (e.innerHTML = r.__html || "");
-          else if ("o" == t[0] && "n" == t[1]) {
-            var a = t !== (t = t.replace(/Capture$/, ""));
-            (t = t.toLowerCase().substring(2)),
-              r
-                ? n || e.addEventListener(t, y, a)
-                : e.removeEventListener(t, y, a),
-              ((e._listeners || (e._listeners = {}))[t] = r);
-          } else if ("list" !== t && "type" !== t && !o && t in e) {
-            try {
-              e[t] = null == r ? "" : r;
-            } catch (e) {}
-            (null != r && !1 !== r) ||
-              "spellcheck" == t ||
-              e.removeAttribute(t);
-          } else {
-            var l = o && t !== (t = t.replace(/^xlink:?/, ""));
-            null == r || !1 === r
-              ? l
-                ? e.removeAttributeNS(
-                    "http://www.w3.org/1999/xlink",
-                    t.toLowerCase()
-                  )
-                : e.removeAttribute(t)
-              : "function" != typeof r &&
-                (l
-                  ? e.setAttributeNS(
-                      "http://www.w3.org/1999/xlink",
-                      t.toLowerCase(),
-                      r
-                    )
-                  : e.setAttribute(t, r));
-          }
-        else e.className = r || "";
-      }
-      function y(e) {
-        return this._listeners[e.type]((t.event && t.event(e)) || e);
-      }
-      var _ = [],
-        g = 0,
-        x = !1,
-        C = !1;
-      function w() {
-        for (var e; (e = _.shift()); )
-          t.afterMount && t.afterMount(e),
-            e.componentDidMount && e.componentDidMount();
-      }
-      function S(e, t, n, r, o, i) {
-        g++ ||
-          ((x = null != o && void 0 !== o.ownerSVGElement),
-          (C = null != e && !("__preactattr_" in e)));
-        var a = N(e, t, n, r, i);
-        return (
-          o && a.parentNode !== o && o.appendChild(a),
-          --g || ((C = !1), i || w()),
-          a
-        );
-      }
-      function N(e, t, n, r, o) {
-        var i = e,
-          a = x;
-        if (
-          ((null != t && "boolean" != typeof t) || (t = ""),
-          "string" == typeof t || "number" == typeof t)
-        )
-          return (
-            e && void 0 !== e.splitText && e.parentNode && (!e._component || o)
-              ? e.nodeValue != t && (e.nodeValue = t)
-              : ((i = document.createTextNode(t)),
-                e &&
-                  (e.parentNode && e.parentNode.replaceChild(i, e), k(e, !0))),
-            (i.__preactattr_ = !0),
-            i
-          );
-        var c,
-          l,
-          u = t.nodeName;
-        if ("function" == typeof u)
-          return (function (e, t, n, r) {
-            for (
-              var o = e && e._component,
-                i = o,
-                a = e,
-                c = o && e._componentConstructor === t.nodeName,
-                l = c,
-                u = h(t);
-              o && !l && (o = o._parentComponent);
+/***/ "./src/app/app.jsx":
+/*!*************************!*\
+  !*** ./src/app/app.jsx ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-            )
-              l = o.constructor === t.nodeName;
-            return (
-              o && l && (!r || o._component)
-                ? (O(o, u, 3, n, r), (e = o.base))
-                : (i && !c && (B(i), (e = a = null)),
-                  (o = T(t.nodeName, u, n)),
-                  e && !o.nextBase && ((o.nextBase = e), (a = null)),
-                  O(o, u, 1, n, r),
-                  (e = o.base),
-                  a && e !== a && ((a._component = null), k(a, !1))),
-              e
-            );
-          })(e, t, n, r);
-        if (
-          ((x = "svg" === u || ("foreignObject" !== u && x)),
-          (u = String(u)),
-          (!e || !v(e, u)) &&
-            ((c = u),
-            ((l = x
-              ? document.createElementNS("http://www.w3.org/2000/svg", c)
-              : document.createElement(c)).normalizedNodeName = c),
-            (i = l),
-            e))
-        ) {
-          for (; e.firstChild; ) i.appendChild(e.firstChild);
-          e.parentNode && e.parentNode.replaceChild(i, e), k(e, !0);
-        }
-        var s = i.firstChild,
-          p = i.__preactattr_,
-          f = t.children;
-        if (null == p) {
-          p = i.__preactattr_ = {};
-          for (var y = i.attributes, _ = y.length; _--; )
-            p[y[_].name] = y[_].value;
-        }
-        return (
-          !C &&
-          f &&
-          1 === f.length &&
-          "string" == typeof f[0] &&
-          null != s &&
-          void 0 !== s.splitText &&
-          null == s.nextSibling
-            ? s.nodeValue != f[0] && (s.nodeValue = f[0])
-            : ((f && f.length) || null != s) &&
-              (function (e, t, n, r, o) {
-                var i,
-                  a,
-                  c,
-                  l,
-                  u,
-                  s = e.childNodes,
-                  p = [],
-                  f = {},
-                  v = 0,
-                  h = 0,
-                  b = s.length,
-                  y = 0,
-                  _ = t ? t.length : 0;
-                if (0 !== b)
-                  for (var g = 0; g < b; g++) {
-                    var x = s[g],
-                      C = x.__preactattr_;
-                    null !=
-                    (w =
-                      _ && C
-                        ? x._component
-                          ? x._component.__key
-                          : C.key
-                        : null)
-                      ? (v++, (f[w] = x))
-                      : (C ||
-                          (void 0 !== x.splitText
-                            ? !o || x.nodeValue.trim()
-                            : o)) &&
-                        (p[y++] = x);
-                  }
-                if (0 !== _)
-                  for (g = 0; g < _; g++) {
-                    var w;
-                    if (((u = null), null != (w = (l = t[g]).key)))
-                      v &&
-                        void 0 !== f[w] &&
-                        ((u = f[w]), (f[w] = void 0), v--);
-                    else if (h < y)
-                      for (i = h; i < y; i++)
-                        if (void 0 !== p[i] && d((a = p[i]), l, o)) {
-                          (u = a),
-                            (p[i] = void 0),
-                            i === y - 1 && y--,
-                            i === h && h++;
-                          break;
-                        }
-                    (u = N(u, l, n, r)),
-                      (c = s[g]),
-                      u &&
-                        u !== e &&
-                        u !== c &&
-                        (null == c
-                          ? e.appendChild(u)
-                          : u === c.nextSibling
-                          ? m(c)
-                          : e.insertBefore(u, c));
-                  }
-                if (v) for (var g in f) void 0 !== f[g] && k(f[g], !1);
-                for (; h <= y; ) void 0 !== (u = p[y--]) && k(u, !1);
-              })(i, f, n, r, C || null != p.dangerouslySetInnerHTML),
-          (function (e, t, n) {
-            var r;
-            for (r in n)
-              (t && null != t[r]) ||
-                null == n[r] ||
-                b(e, r, n[r], (n[r] = void 0), x);
-            for (r in t)
-              "children" === r ||
-                "innerHTML" === r ||
-                (r in n &&
-                  t[r] === ("value" === r || "checked" === r ? e[r] : n[r])) ||
-                b(e, r, n[r], (n[r] = t[r]), x);
-          })(i, t.attributes, p),
-          (x = a),
-          i
-        );
-      }
-      function k(e, t) {
-        var n = e._component;
-        n
-          ? B(n)
-          : (null != e.__preactattr_ && c(e.__preactattr_.ref, null),
-            (!1 !== t && null != e.__preactattr_) || m(e),
-            P(e));
-      }
-      function P(e) {
-        for (e = e.lastChild; e; ) {
-          var t = e.previousSibling;
-          k(e, !0), (e = t);
-        }
-      }
-      var j = [];
-      function T(e, t, n) {
-        var r,
-          o = j.length;
-        for (
-          e.prototype && e.prototype.render
-            ? ((r = new e(t, n)), E.call(r, t, n))
-            : (((r = new E(t, n)).constructor = e), (r.render = U));
-          o--;
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ \"./node_modules/preact/dist/preact.mjs\");\n/* harmony import */ var _app_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.scss */ \"./src/app/app.scss\");\n/* harmony import */ var _app_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app_scss__WEBPACK_IMPORTED_MODULE_1__);\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\nfunction _toPropertyKey(arg) { var key = _toPrimitive(arg, \"string\"); return _typeof(key) === \"symbol\" ? key : String(key); }\nfunction _toPrimitive(input, hint) { if (_typeof(input) !== \"object\" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || \"default\"); if (_typeof(res) !== \"object\") return res; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (hint === \"string\" ? String : Number)(input); }\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, \"prototype\", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\nfunction _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } else if (call !== void 0) { throw new TypeError(\"Derived constructors may only return object or undefined\"); } return _assertThisInitialized(self); }\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\n\nvar App = /*#__PURE__*/function (_Component) {\n  _inherits(App, _Component);\n  var _super = _createSuper(App);\n  function App() {\n    _classCallCheck(this, App);\n    return _super.apply(this, arguments);\n  }\n  _createClass(App, [{\n    key: \"render\",\n    value: function render() {\n      return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(\"div\", {\n        id: \"app-root\"\n      }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(\"h1\", null, \"Preact Chrome Extension Starter\"));\n    }\n  }]);\n  return App;\n}(preact__WEBPACK_IMPORTED_MODULE_0__.Component);\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://preact-chrome-extension/./src/app/app.jsx?");
 
-        )
-          if (j[o].constructor === e)
-            return (r.nextBase = j[o].nextBase), j.splice(o, 1), r;
-        return r;
-      }
-      function U(e, t, n) {
-        return this.constructor(e, n);
-      }
-      function O(e, n, r, o, i) {
-        e._disable ||
-          ((e._disable = !0),
-          (e.__ref = n.ref),
-          (e.__key = n.key),
-          delete n.ref,
-          delete n.key,
-          void 0 === e.constructor.getDerivedStateFromProps &&
-            (!e.base || i
-              ? e.componentWillMount && e.componentWillMount()
-              : e.componentWillReceiveProps &&
-                e.componentWillReceiveProps(n, o)),
-          o &&
-            o !== e.context &&
-            (e.prevContext || (e.prevContext = e.context), (e.context = o)),
-          e.prevProps || (e.prevProps = e.props),
-          (e.props = n),
-          (e._disable = !1),
-          0 !== r &&
-            (1 !== r && !1 === t.syncComponentUpdates && e.base
-              ? p(e)
-              : M(e, 1, i)),
-          c(e.__ref, e));
-      }
-      function M(e, n, r, o) {
-        if (!e._disable) {
-          var i,
-            c,
-            l,
-            u = e.props,
-            s = e.state,
-            p = e.context,
-            f = e.prevProps || u,
-            d = e.prevState || s,
-            v = e.prevContext || p,
-            m = e.base,
-            b = e.nextBase,
-            y = m || b,
-            x = e._component,
-            C = !1,
-            N = v;
-          if (
-            (e.constructor.getDerivedStateFromProps &&
-              ((s = a(a({}, s), e.constructor.getDerivedStateFromProps(u, s))),
-              (e.state = s)),
-            m &&
-              ((e.props = f),
-              (e.state = d),
-              (e.context = v),
-              2 !== n &&
-              e.shouldComponentUpdate &&
-              !1 === e.shouldComponentUpdate(u, s, p)
-                ? (C = !0)
-                : e.componentWillUpdate && e.componentWillUpdate(u, s, p),
-              (e.props = u),
-              (e.state = s),
-              (e.context = p)),
-            (e.prevProps = e.prevState = e.prevContext = e.nextBase = null),
-            (e._dirty = !1),
-            !C)
-          ) {
-            (i = e.render(u, s, p)),
-              e.getChildContext && (p = a(a({}, p), e.getChildContext())),
-              m &&
-                e.getSnapshotBeforeUpdate &&
-                (N = e.getSnapshotBeforeUpdate(f, d));
-            var P,
-              j,
-              U = i && i.nodeName;
-            if ("function" == typeof U) {
-              var E = h(i);
-              (c = x) && c.constructor === U && E.key == c.__key
-                ? O(c, E, 1, p, !1)
-                : ((P = c),
-                  (e._component = c = T(U, E, p)),
-                  (c.nextBase = c.nextBase || b),
-                  (c._parentComponent = e),
-                  O(c, E, 0, p, !1),
-                  M(c, 1, r, !0)),
-                (j = c.base);
-            } else
-              (l = y),
-                (P = x) && (l = e._component = null),
-                (y || 1 === n) &&
-                  (l && (l._component = null),
-                  (j = S(l, i, p, r || !m, y && y.parentNode, !0)));
-            if (y && j !== y && c !== x) {
-              var L = y.parentNode;
-              L &&
-                j !== L &&
-                (L.replaceChild(j, y), P || ((y._component = null), k(y, !1)));
-            }
-            if ((P && B(P), (e.base = j), j && !o)) {
-              for (var R = e, A = e; (A = A._parentComponent); )
-                (R = A).base = j;
-              (j._component = R), (j._componentConstructor = R.constructor);
-            }
-          }
-          for (
-            !m || r
-              ? _.push(e)
-              : C ||
-                (e.componentDidUpdate && e.componentDidUpdate(f, d, N),
-                t.afterUpdate && t.afterUpdate(e));
-            e._renderCallbacks.length;
+/***/ }),
 
-          )
-            e._renderCallbacks.pop().call(e);
-          g || o || w();
-        }
-      }
-      function B(e) {
-        t.beforeUnmount && t.beforeUnmount(e);
-        var n = e.base;
-        (e._disable = !0),
-          e.componentWillUnmount && e.componentWillUnmount(),
-          (e.base = null);
-        var r = e._component;
-        r
-          ? B(r)
-          : n &&
-            (null != n.__preactattr_ && c(n.__preactattr_.ref, null),
-            (e.nextBase = n),
-            m(n),
-            j.push(e),
-            P(n)),
-          c(e.__ref, null);
-      }
-      function E(e, t) {
-        (this._dirty = !0),
-          (this.context = t),
-          (this.props = e),
-          (this.state = this.state || {}),
-          (this._renderCallbacks = []);
-      }
-      function L(e) {
-        return (
-          (L =
-            "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
-              ? function (e) {
-                  return typeof e;
-                }
-              : function (e) {
-                  return e &&
-                    "function" == typeof Symbol &&
-                    e.constructor === Symbol &&
-                    e !== Symbol.prototype
-                    ? "symbol"
-                    : typeof e;
-                }),
-          L(e)
-        );
-      }
-      function R(e, t) {
-        for (var n = 0; n < t.length; n++) {
-          var r = t[n];
-          (r.enumerable = r.enumerable || !1),
-            (r.configurable = !0),
-            "value" in r && (r.writable = !0),
-            Object.defineProperty(
-              e,
-              (void 0,
-              (o = (function (e, t) {
-                if ("object" !== L(e) || null === e) return e;
-                var n = e[Symbol.toPrimitive];
-                if (void 0 !== n) {
-                  var r = n.call(e, "string");
-                  if ("object" !== L(r)) return r;
-                  throw new TypeError(
-                    "@@toPrimitive must return a primitive value."
-                  );
-                }
-                return String(e);
-              })(r.key)),
-              "symbol" === L(o) ? o : String(o)),
-              r
-            );
-        }
-        var o;
-      }
-      function A(e, t) {
-        return (
-          (A = Object.setPrototypeOf
-            ? Object.setPrototypeOf.bind()
-            : function (e, t) {
-                return (e.__proto__ = t), e;
-              }),
-          A(e, t)
-        );
-      }
-      function D(e) {
-        return (
-          (D = Object.setPrototypeOf
-            ? Object.getPrototypeOf.bind()
-            : function (e) {
-                return e.__proto__ || Object.getPrototypeOf(e);
-              }),
-          D(e)
-        );
-      }
-      a(E.prototype, {
-        setState: function (e, t) {
-          this.prevState || (this.prevState = this.state),
-            (this.state = a(
-              a({}, this.state),
-              "function" == typeof e ? e(this.state, this.props) : e
-            )),
-            t && this._renderCallbacks.push(t),
-            p(this);
-        },
-        forceUpdate: function (e) {
-          e && this._renderCallbacks.push(e), M(this, 2);
-        },
-        render: function () {},
-      }),
-        n(283);
-      var W,
-        H,
-        I,
-        V = (function (e) {
-          !(function (e, t) {
-            if ("function" != typeof t && null !== t)
-              throw new TypeError(
-                "Super expression must either be null or a function"
-              );
-            (e.prototype = Object.create(t && t.prototype, {
-              constructor: { value: e, writable: !0, configurable: !0 },
-            })),
-              Object.defineProperty(e, "prototype", { writable: !1 }),
-              t && A(e, t);
-          })(c, e);
-          var t,
-            n,
-            r,
-            o,
-            a =
-              ((r = c),
-              (o = (function () {
-                if ("undefined" == typeof Reflect || !Reflect.construct)
-                  return !1;
-                if (Reflect.construct.sham) return !1;
-                if ("function" == typeof Proxy) return !0;
-                try {
-                  return (
-                    Boolean.prototype.valueOf.call(
-                      Reflect.construct(Boolean, [], function () {})
-                    ),
-                    !0
-                  );
-                } catch (e) {
-                  return !1;
-                }
-              })()),
-              function () {
-                var e,
-                  t = D(r);
-                if (o) {
-                  var n = D(this).constructor;
-                  e = Reflect.construct(t, arguments, n);
-                } else e = t.apply(this, arguments);
-                return (function (e, t) {
-                  if (t && ("object" === L(t) || "function" == typeof t))
-                    return t;
-                  if (void 0 !== t)
-                    throw new TypeError(
-                      "Derived constructors may only return object or undefined"
-                    );
-                  return (function (e) {
-                    if (void 0 === e)
-                      throw new ReferenceError(
-                        "this hasn't been initialised - super() hasn't been called"
-                      );
-                    return e;
-                  })(e);
-                })(this, e);
-              });
-          function c() {
-            return (
-              (function (e, t) {
-                if (!(e instanceof t))
-                  throw new TypeError("Cannot call a class as a function");
-              })(this, c),
-              a.apply(this, arguments)
-            );
-          }
-          return (
-            (t = c),
-            (n = [
-              {
-                key: "render",
-                value: function () {
-                  return i(
-                    "div",
-                    { id: "app-root" },
-                    i("h1", null, "Preact Chrome Extension Starter")
-                  );
-                },
-              },
-            ]) && R(t.prototype, n),
-            Object.defineProperty(t, "prototype", { writable: !1 }),
-            c
-          );
-        })(E);
-      (W = i(V, null)), (H = document.body), S(I, W, {}, !1, H, !1);
-    })();
-})();
+/***/ "./src/popup.jsx":
+/*!***********************!*\
+  !*** ./src/popup.jsx ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ \"./node_modules/preact/dist/preact.mjs\");\n/* harmony import */ var _app_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app/app */ \"./src/app/app.jsx\");\n\n\n(0,preact__WEBPACK_IMPORTED_MODULE_0__.render)((0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_app_app__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), document.body);\n\n//# sourceURL=webpack://preact-chrome-extension/./src/popup.jsx?");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js!./src/app/app.scss":
+/*!**************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js!./src/app/app.scss ***!
+  \**************************************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.id, \"#app-root {\\n  width: 400px;\\n  height: 75px;\\n  padding: 2px; }\\n  #app-root h1 {\\n    text-align: center;\\n    color: darkblue;\\n    font-weight: bold;\\n    font-family: Helvetica;\\n    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15); }\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack://preact-chrome-extension/./src/app/app.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\n// css base code, injected by the css-loader\n// eslint-disable-next-line func-names\nmodule.exports = function (useSourceMap) {\n  var list = []; // return the list of modules as css string\n\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = cssWithMappingToString(item, useSourceMap);\n\n      if (item[2]) {\n        return \"@media \".concat(item[2], \" {\").concat(content, \"}\");\n      }\n\n      return content;\n    }).join('');\n  }; // import a list of modules into the list\n  // eslint-disable-next-line func-names\n\n\n  list.i = function (modules, mediaQuery, dedupe) {\n    if (typeof modules === 'string') {\n      // eslint-disable-next-line no-param-reassign\n      modules = [[null, modules, '']];\n    }\n\n    var alreadyImportedModules = {};\n\n    if (dedupe) {\n      for (var i = 0; i < this.length; i++) {\n        // eslint-disable-next-line prefer-destructuring\n        var id = this[i][0];\n\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n\n    for (var _i = 0; _i < modules.length; _i++) {\n      var item = [].concat(modules[_i]);\n\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        // eslint-disable-next-line no-continue\n        continue;\n      }\n\n      if (mediaQuery) {\n        if (!item[2]) {\n          item[2] = mediaQuery;\n        } else {\n          item[2] = \"\".concat(mediaQuery, \" and \").concat(item[2]);\n        }\n      }\n\n      list.push(item);\n    }\n  };\n\n  return list;\n};\n\nfunction cssWithMappingToString(item, useSourceMap) {\n  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring\n\n  var cssMapping = item[3];\n\n  if (!cssMapping) {\n    return content;\n  }\n\n  if (useSourceMap && typeof btoa === 'function') {\n    var sourceMapping = toComment(cssMapping);\n    var sourceURLs = cssMapping.sources.map(function (source) {\n      return \"/*# sourceURL=\".concat(cssMapping.sourceRoot || '').concat(source, \" */\");\n    });\n    return [content].concat(sourceURLs).concat([sourceMapping]).join('\\n');\n  }\n\n  return [content].join('\\n');\n} // Adapted from convert-source-map (MIT)\n\n\nfunction toComment(sourceMap) {\n  // eslint-disable-next-line no-undef\n  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));\n  var data = \"sourceMappingURL=data:application/json;charset=utf-8;base64,\".concat(base64);\n  return \"/*# \".concat(data, \" */\");\n}\n\n//# sourceURL=webpack://preact-chrome-extension/./node_modules/css-loader/dist/runtime/api.js?");
+
+/***/ }),
+
+/***/ "./src/app/app.scss":
+/*!**************************!*\
+  !*** ./src/app/app.scss ***!
+  \**************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("var api = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n            var content = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!../../node_modules/resolve-url-loader/index.js!../../node_modules/sass-loader/dist/cjs.js!./app.scss */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js!./src/app/app.scss\");\n\n            content = content.__esModule ? content.default : content;\n\n            if (typeof content === 'string') {\n              content = [[module.id, content, '']];\n            }\n\nvar options = {};\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = api(content, options);\n\n\n\nmodule.exports = content.locals || {};\n\n//# sourceURL=webpack://preact-chrome-extension/./src/app/app.scss?");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function memorize() {\n    if (typeof memo === 'undefined') {\n      // Test for IE <= 9 as proposed by Browserhacks\n      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805\n      // Tests for existence of standard globals is to allow style-loader\n      // to operate correctly into non-standard environments\n      // @see https://github.com/webpack-contrib/style-loader/issues/177\n      memo = Boolean(window && document && document.all && !window.atob);\n    }\n\n    return memo;\n  };\n}();\n\nvar getTarget = function getTarget() {\n  var memo = {};\n  return function memorize(target) {\n    if (typeof memo[target] === 'undefined') {\n      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself\n\n      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {\n        try {\n          // This will throw an exception if access to iframe is blocked\n          // due to cross-origin restrictions\n          styleTarget = styleTarget.contentDocument.head;\n        } catch (e) {\n          // istanbul ignore next\n          styleTarget = null;\n        }\n      }\n\n      memo[target] = styleTarget;\n    }\n\n    return memo[target];\n  };\n}();\n\nvar stylesInDom = [];\n\nfunction getIndexByIdentifier(identifier) {\n  var result = -1;\n\n  for (var i = 0; i < stylesInDom.length; i++) {\n    if (stylesInDom[i].identifier === identifier) {\n      result = i;\n      break;\n    }\n  }\n\n  return result;\n}\n\nfunction modulesToDom(list, options) {\n  var idCountMap = {};\n  var identifiers = [];\n\n  for (var i = 0; i < list.length; i++) {\n    var item = list[i];\n    var id = options.base ? item[0] + options.base : item[0];\n    var count = idCountMap[id] || 0;\n    var identifier = \"\".concat(id, \" \").concat(count);\n    idCountMap[id] = count + 1;\n    var index = getIndexByIdentifier(identifier);\n    var obj = {\n      css: item[1],\n      media: item[2],\n      sourceMap: item[3]\n    };\n\n    if (index !== -1) {\n      stylesInDom[index].references++;\n      stylesInDom[index].updater(obj);\n    } else {\n      stylesInDom.push({\n        identifier: identifier,\n        updater: addStyle(obj, options),\n        references: 1\n      });\n    }\n\n    identifiers.push(identifier);\n  }\n\n  return identifiers;\n}\n\nfunction insertStyleElement(options) {\n  var style = document.createElement('style');\n  var attributes = options.attributes || {};\n\n  if (typeof attributes.nonce === 'undefined') {\n    var nonce =  true ? __webpack_require__.nc : 0;\n\n    if (nonce) {\n      attributes.nonce = nonce;\n    }\n  }\n\n  Object.keys(attributes).forEach(function (key) {\n    style.setAttribute(key, attributes[key]);\n  });\n\n  if (typeof options.insert === 'function') {\n    options.insert(style);\n  } else {\n    var target = getTarget(options.insert || 'head');\n\n    if (!target) {\n      throw new Error(\"Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.\");\n    }\n\n    target.appendChild(style);\n  }\n\n  return style;\n}\n\nfunction removeStyleElement(style) {\n  // istanbul ignore if\n  if (style.parentNode === null) {\n    return false;\n  }\n\n  style.parentNode.removeChild(style);\n}\n/* istanbul ignore next  */\n\n\nvar replaceText = function replaceText() {\n  var textStore = [];\n  return function replace(index, replacement) {\n    textStore[index] = replacement;\n    return textStore.filter(Boolean).join('\\n');\n  };\n}();\n\nfunction applyToSingletonTag(style, index, remove, obj) {\n  var css = remove ? '' : obj.media ? \"@media \".concat(obj.media, \" {\").concat(obj.css, \"}\") : obj.css; // For old IE\n\n  /* istanbul ignore if  */\n\n  if (style.styleSheet) {\n    style.styleSheet.cssText = replaceText(index, css);\n  } else {\n    var cssNode = document.createTextNode(css);\n    var childNodes = style.childNodes;\n\n    if (childNodes[index]) {\n      style.removeChild(childNodes[index]);\n    }\n\n    if (childNodes.length) {\n      style.insertBefore(cssNode, childNodes[index]);\n    } else {\n      style.appendChild(cssNode);\n    }\n  }\n}\n\nfunction applyToTag(style, options, obj) {\n  var css = obj.css;\n  var media = obj.media;\n  var sourceMap = obj.sourceMap;\n\n  if (media) {\n    style.setAttribute('media', media);\n  } else {\n    style.removeAttribute('media');\n  }\n\n  if (sourceMap && typeof btoa !== 'undefined') {\n    css += \"\\n/*# sourceMappingURL=data:application/json;base64,\".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), \" */\");\n  } // For old IE\n\n  /* istanbul ignore if  */\n\n\n  if (style.styleSheet) {\n    style.styleSheet.cssText = css;\n  } else {\n    while (style.firstChild) {\n      style.removeChild(style.firstChild);\n    }\n\n    style.appendChild(document.createTextNode(css));\n  }\n}\n\nvar singleton = null;\nvar singletonCounter = 0;\n\nfunction addStyle(obj, options) {\n  var style;\n  var update;\n  var remove;\n\n  if (options.singleton) {\n    var styleIndex = singletonCounter++;\n    style = singleton || (singleton = insertStyleElement(options));\n    update = applyToSingletonTag.bind(null, style, styleIndex, false);\n    remove = applyToSingletonTag.bind(null, style, styleIndex, true);\n  } else {\n    style = insertStyleElement(options);\n    update = applyToTag.bind(null, style, options);\n\n    remove = function remove() {\n      removeStyleElement(style);\n    };\n  }\n\n  update(obj);\n  return function updateStyle(newObj) {\n    if (newObj) {\n      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {\n        return;\n      }\n\n      update(obj = newObj);\n    } else {\n      remove();\n    }\n  };\n}\n\nmodule.exports = function (list, options) {\n  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>\n  // tags it will allow on a page\n\n  if (!options.singleton && typeof options.singleton !== 'boolean') {\n    options.singleton = isOldIE();\n  }\n\n  list = list || [];\n  var lastIdentifiers = modulesToDom(list, options);\n  return function update(newList) {\n    newList = newList || [];\n\n    if (Object.prototype.toString.call(newList) !== '[object Array]') {\n      return;\n    }\n\n    for (var i = 0; i < lastIdentifiers.length; i++) {\n      var identifier = lastIdentifiers[i];\n      var index = getIndexByIdentifier(identifier);\n      stylesInDom[index].references--;\n    }\n\n    var newLastIdentifiers = modulesToDom(newList, options);\n\n    for (var _i = 0; _i < lastIdentifiers.length; _i++) {\n      var _identifier = lastIdentifiers[_i];\n\n      var _index = getIndexByIdentifier(_identifier);\n\n      if (stylesInDom[_index].references === 0) {\n        stylesInDom[_index].updater();\n\n        stylesInDom.splice(_index, 1);\n      }\n    }\n\n    lastIdentifiers = newLastIdentifiers;\n  };\n};\n\n//# sourceURL=webpack://preact-chrome-extension/./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js?");
+
+/***/ }),
+
+/***/ "./node_modules/preact/dist/preact.mjs":
+/*!*********************************************!*\
+  !*** ./node_modules/preact/dist/preact.mjs ***!
+  \*********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Component: () => (/* binding */ Component),\n/* harmony export */   cloneElement: () => (/* binding */ cloneElement),\n/* harmony export */   createElement: () => (/* binding */ h),\n/* harmony export */   createRef: () => (/* binding */ createRef),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   h: () => (/* binding */ h),\n/* harmony export */   options: () => (/* binding */ options),\n/* harmony export */   render: () => (/* binding */ render),\n/* harmony export */   rerender: () => (/* binding */ rerender)\n/* harmony export */ });\nvar VNode = function VNode() {};\n\nvar options = {};\n\nvar stack = [];\n\nvar EMPTY_CHILDREN = [];\n\nfunction h(nodeName, attributes) {\n\tvar children = EMPTY_CHILDREN,\n\t    lastSimple,\n\t    child,\n\t    simple,\n\t    i;\n\tfor (i = arguments.length; i-- > 2;) {\n\t\tstack.push(arguments[i]);\n\t}\n\tif (attributes && attributes.children != null) {\n\t\tif (!stack.length) stack.push(attributes.children);\n\t\tdelete attributes.children;\n\t}\n\twhile (stack.length) {\n\t\tif ((child = stack.pop()) && child.pop !== undefined) {\n\t\t\tfor (i = child.length; i--;) {\n\t\t\t\tstack.push(child[i]);\n\t\t\t}\n\t\t} else {\n\t\t\tif (typeof child === 'boolean') child = null;\n\n\t\t\tif (simple = typeof nodeName !== 'function') {\n\t\t\t\tif (child == null) child = '';else if (typeof child === 'number') child = String(child);else if (typeof child !== 'string') simple = false;\n\t\t\t}\n\n\t\t\tif (simple && lastSimple) {\n\t\t\t\tchildren[children.length - 1] += child;\n\t\t\t} else if (children === EMPTY_CHILDREN) {\n\t\t\t\tchildren = [child];\n\t\t\t} else {\n\t\t\t\tchildren.push(child);\n\t\t\t}\n\n\t\t\tlastSimple = simple;\n\t\t}\n\t}\n\n\tvar p = new VNode();\n\tp.nodeName = nodeName;\n\tp.children = children;\n\tp.attributes = attributes == null ? undefined : attributes;\n\tp.key = attributes == null ? undefined : attributes.key;\n\n\tif (options.vnode !== undefined) options.vnode(p);\n\n\treturn p;\n}\n\nfunction extend(obj, props) {\n  for (var i in props) {\n    obj[i] = props[i];\n  }return obj;\n}\n\nfunction applyRef(ref, value) {\n  if (ref) {\n    if (typeof ref == 'function') ref(value);else ref.current = value;\n  }\n}\n\nvar defer = typeof Promise == 'function' ? Promise.resolve().then.bind(Promise.resolve()) : setTimeout;\n\nfunction cloneElement(vnode, props) {\n  return h(vnode.nodeName, extend(extend({}, vnode.attributes), props), arguments.length > 2 ? [].slice.call(arguments, 2) : vnode.children);\n}\n\nvar IS_NON_DIMENSIONAL = /acit|ex(?:s|g|n|p|$)|rph|ows|mnc|ntw|ine[ch]|zoo|^ord/i;\n\nvar items = [];\n\nfunction enqueueRender(component) {\n\tif (!component._dirty && (component._dirty = true) && items.push(component) == 1) {\n\t\t(options.debounceRendering || defer)(rerender);\n\t}\n}\n\nfunction rerender() {\n\tvar p;\n\twhile (p = items.pop()) {\n\t\tif (p._dirty) renderComponent(p);\n\t}\n}\n\nfunction isSameNodeType(node, vnode, hydrating) {\n\tif (typeof vnode === 'string' || typeof vnode === 'number') {\n\t\treturn node.splitText !== undefined;\n\t}\n\tif (typeof vnode.nodeName === 'string') {\n\t\treturn !node._componentConstructor && isNamedNode(node, vnode.nodeName);\n\t}\n\treturn hydrating || node._componentConstructor === vnode.nodeName;\n}\n\nfunction isNamedNode(node, nodeName) {\n\treturn node.normalizedNodeName === nodeName || node.nodeName.toLowerCase() === nodeName.toLowerCase();\n}\n\nfunction getNodeProps(vnode) {\n\tvar props = extend({}, vnode.attributes);\n\tprops.children = vnode.children;\n\n\tvar defaultProps = vnode.nodeName.defaultProps;\n\tif (defaultProps !== undefined) {\n\t\tfor (var i in defaultProps) {\n\t\t\tif (props[i] === undefined) {\n\t\t\t\tprops[i] = defaultProps[i];\n\t\t\t}\n\t\t}\n\t}\n\n\treturn props;\n}\n\nfunction createNode(nodeName, isSvg) {\n\tvar node = isSvg ? document.createElementNS('http://www.w3.org/2000/svg', nodeName) : document.createElement(nodeName);\n\tnode.normalizedNodeName = nodeName;\n\treturn node;\n}\n\nfunction removeNode(node) {\n\tvar parentNode = node.parentNode;\n\tif (parentNode) parentNode.removeChild(node);\n}\n\nfunction setAccessor(node, name, old, value, isSvg) {\n\tif (name === 'className') name = 'class';\n\n\tif (name === 'key') {} else if (name === 'ref') {\n\t\tapplyRef(old, null);\n\t\tapplyRef(value, node);\n\t} else if (name === 'class' && !isSvg) {\n\t\tnode.className = value || '';\n\t} else if (name === 'style') {\n\t\tif (!value || typeof value === 'string' || typeof old === 'string') {\n\t\t\tnode.style.cssText = value || '';\n\t\t}\n\t\tif (value && typeof value === 'object') {\n\t\t\tif (typeof old !== 'string') {\n\t\t\t\tfor (var i in old) {\n\t\t\t\t\tif (!(i in value)) node.style[i] = '';\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (var i in value) {\n\t\t\t\tnode.style[i] = typeof value[i] === 'number' && IS_NON_DIMENSIONAL.test(i) === false ? value[i] + 'px' : value[i];\n\t\t\t}\n\t\t}\n\t} else if (name === 'dangerouslySetInnerHTML') {\n\t\tif (value) node.innerHTML = value.__html || '';\n\t} else if (name[0] == 'o' && name[1] == 'n') {\n\t\tvar useCapture = name !== (name = name.replace(/Capture$/, ''));\n\t\tname = name.toLowerCase().substring(2);\n\t\tif (value) {\n\t\t\tif (!old) node.addEventListener(name, eventProxy, useCapture);\n\t\t} else {\n\t\t\tnode.removeEventListener(name, eventProxy, useCapture);\n\t\t}\n\t\t(node._listeners || (node._listeners = {}))[name] = value;\n\t} else if (name !== 'list' && name !== 'type' && !isSvg && name in node) {\n\t\ttry {\n\t\t\tnode[name] = value == null ? '' : value;\n\t\t} catch (e) {}\n\t\tif ((value == null || value === false) && name != 'spellcheck') node.removeAttribute(name);\n\t} else {\n\t\tvar ns = isSvg && name !== (name = name.replace(/^xlink:?/, ''));\n\n\t\tif (value == null || value === false) {\n\t\t\tif (ns) node.removeAttributeNS('http://www.w3.org/1999/xlink', name.toLowerCase());else node.removeAttribute(name);\n\t\t} else if (typeof value !== 'function') {\n\t\t\tif (ns) node.setAttributeNS('http://www.w3.org/1999/xlink', name.toLowerCase(), value);else node.setAttribute(name, value);\n\t\t}\n\t}\n}\n\nfunction eventProxy(e) {\n\treturn this._listeners[e.type](options.event && options.event(e) || e);\n}\n\nvar mounts = [];\n\nvar diffLevel = 0;\n\nvar isSvgMode = false;\n\nvar hydrating = false;\n\nfunction flushMounts() {\n\tvar c;\n\twhile (c = mounts.shift()) {\n\t\tif (options.afterMount) options.afterMount(c);\n\t\tif (c.componentDidMount) c.componentDidMount();\n\t}\n}\n\nfunction diff(dom, vnode, context, mountAll, parent, componentRoot) {\n\tif (!diffLevel++) {\n\t\tisSvgMode = parent != null && parent.ownerSVGElement !== undefined;\n\n\t\thydrating = dom != null && !('__preactattr_' in dom);\n\t}\n\n\tvar ret = idiff(dom, vnode, context, mountAll, componentRoot);\n\n\tif (parent && ret.parentNode !== parent) parent.appendChild(ret);\n\n\tif (! --diffLevel) {\n\t\thydrating = false;\n\n\t\tif (!componentRoot) flushMounts();\n\t}\n\n\treturn ret;\n}\n\nfunction idiff(dom, vnode, context, mountAll, componentRoot) {\n\tvar out = dom,\n\t    prevSvgMode = isSvgMode;\n\n\tif (vnode == null || typeof vnode === 'boolean') vnode = '';\n\n\tif (typeof vnode === 'string' || typeof vnode === 'number') {\n\t\tif (dom && dom.splitText !== undefined && dom.parentNode && (!dom._component || componentRoot)) {\n\t\t\tif (dom.nodeValue != vnode) {\n\t\t\t\tdom.nodeValue = vnode;\n\t\t\t}\n\t\t} else {\n\t\t\tout = document.createTextNode(vnode);\n\t\t\tif (dom) {\n\t\t\t\tif (dom.parentNode) dom.parentNode.replaceChild(out, dom);\n\t\t\t\trecollectNodeTree(dom, true);\n\t\t\t}\n\t\t}\n\n\t\tout['__preactattr_'] = true;\n\n\t\treturn out;\n\t}\n\n\tvar vnodeName = vnode.nodeName;\n\tif (typeof vnodeName === 'function') {\n\t\treturn buildComponentFromVNode(dom, vnode, context, mountAll);\n\t}\n\n\tisSvgMode = vnodeName === 'svg' ? true : vnodeName === 'foreignObject' ? false : isSvgMode;\n\n\tvnodeName = String(vnodeName);\n\tif (!dom || !isNamedNode(dom, vnodeName)) {\n\t\tout = createNode(vnodeName, isSvgMode);\n\n\t\tif (dom) {\n\t\t\twhile (dom.firstChild) {\n\t\t\t\tout.appendChild(dom.firstChild);\n\t\t\t}\n\t\t\tif (dom.parentNode) dom.parentNode.replaceChild(out, dom);\n\n\t\t\trecollectNodeTree(dom, true);\n\t\t}\n\t}\n\n\tvar fc = out.firstChild,\n\t    props = out['__preactattr_'],\n\t    vchildren = vnode.children;\n\n\tif (props == null) {\n\t\tprops = out['__preactattr_'] = {};\n\t\tfor (var a = out.attributes, i = a.length; i--;) {\n\t\t\tprops[a[i].name] = a[i].value;\n\t\t}\n\t}\n\n\tif (!hydrating && vchildren && vchildren.length === 1 && typeof vchildren[0] === 'string' && fc != null && fc.splitText !== undefined && fc.nextSibling == null) {\n\t\tif (fc.nodeValue != vchildren[0]) {\n\t\t\tfc.nodeValue = vchildren[0];\n\t\t}\n\t} else if (vchildren && vchildren.length || fc != null) {\n\t\t\tinnerDiffNode(out, vchildren, context, mountAll, hydrating || props.dangerouslySetInnerHTML != null);\n\t\t}\n\n\tdiffAttributes(out, vnode.attributes, props);\n\n\tisSvgMode = prevSvgMode;\n\n\treturn out;\n}\n\nfunction innerDiffNode(dom, vchildren, context, mountAll, isHydrating) {\n\tvar originalChildren = dom.childNodes,\n\t    children = [],\n\t    keyed = {},\n\t    keyedLen = 0,\n\t    min = 0,\n\t    len = originalChildren.length,\n\t    childrenLen = 0,\n\t    vlen = vchildren ? vchildren.length : 0,\n\t    j,\n\t    c,\n\t    f,\n\t    vchild,\n\t    child;\n\n\tif (len !== 0) {\n\t\tfor (var i = 0; i < len; i++) {\n\t\t\tvar _child = originalChildren[i],\n\t\t\t    props = _child['__preactattr_'],\n\t\t\t    key = vlen && props ? _child._component ? _child._component.__key : props.key : null;\n\t\t\tif (key != null) {\n\t\t\t\tkeyedLen++;\n\t\t\t\tkeyed[key] = _child;\n\t\t\t} else if (props || (_child.splitText !== undefined ? isHydrating ? _child.nodeValue.trim() : true : isHydrating)) {\n\t\t\t\tchildren[childrenLen++] = _child;\n\t\t\t}\n\t\t}\n\t}\n\n\tif (vlen !== 0) {\n\t\tfor (var i = 0; i < vlen; i++) {\n\t\t\tvchild = vchildren[i];\n\t\t\tchild = null;\n\n\t\t\tvar key = vchild.key;\n\t\t\tif (key != null) {\n\t\t\t\tif (keyedLen && keyed[key] !== undefined) {\n\t\t\t\t\tchild = keyed[key];\n\t\t\t\t\tkeyed[key] = undefined;\n\t\t\t\t\tkeyedLen--;\n\t\t\t\t}\n\t\t\t} else if (min < childrenLen) {\n\t\t\t\t\tfor (j = min; j < childrenLen; j++) {\n\t\t\t\t\t\tif (children[j] !== undefined && isSameNodeType(c = children[j], vchild, isHydrating)) {\n\t\t\t\t\t\t\tchild = c;\n\t\t\t\t\t\t\tchildren[j] = undefined;\n\t\t\t\t\t\t\tif (j === childrenLen - 1) childrenLen--;\n\t\t\t\t\t\t\tif (j === min) min++;\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\tchild = idiff(child, vchild, context, mountAll);\n\n\t\t\tf = originalChildren[i];\n\t\t\tif (child && child !== dom && child !== f) {\n\t\t\t\tif (f == null) {\n\t\t\t\t\tdom.appendChild(child);\n\t\t\t\t} else if (child === f.nextSibling) {\n\t\t\t\t\tremoveNode(f);\n\t\t\t\t} else {\n\t\t\t\t\tdom.insertBefore(child, f);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\tif (keyedLen) {\n\t\tfor (var i in keyed) {\n\t\t\tif (keyed[i] !== undefined) recollectNodeTree(keyed[i], false);\n\t\t}\n\t}\n\n\twhile (min <= childrenLen) {\n\t\tif ((child = children[childrenLen--]) !== undefined) recollectNodeTree(child, false);\n\t}\n}\n\nfunction recollectNodeTree(node, unmountOnly) {\n\tvar component = node._component;\n\tif (component) {\n\t\tunmountComponent(component);\n\t} else {\n\t\tif (node['__preactattr_'] != null) applyRef(node['__preactattr_'].ref, null);\n\n\t\tif (unmountOnly === false || node['__preactattr_'] == null) {\n\t\t\tremoveNode(node);\n\t\t}\n\n\t\tremoveChildren(node);\n\t}\n}\n\nfunction removeChildren(node) {\n\tnode = node.lastChild;\n\twhile (node) {\n\t\tvar next = node.previousSibling;\n\t\trecollectNodeTree(node, true);\n\t\tnode = next;\n\t}\n}\n\nfunction diffAttributes(dom, attrs, old) {\n\tvar name;\n\n\tfor (name in old) {\n\t\tif (!(attrs && attrs[name] != null) && old[name] != null) {\n\t\t\tsetAccessor(dom, name, old[name], old[name] = undefined, isSvgMode);\n\t\t}\n\t}\n\n\tfor (name in attrs) {\n\t\tif (name !== 'children' && name !== 'innerHTML' && (!(name in old) || attrs[name] !== (name === 'value' || name === 'checked' ? dom[name] : old[name]))) {\n\t\t\tsetAccessor(dom, name, old[name], old[name] = attrs[name], isSvgMode);\n\t\t}\n\t}\n}\n\nvar recyclerComponents = [];\n\nfunction createComponent(Ctor, props, context) {\n\tvar inst,\n\t    i = recyclerComponents.length;\n\n\tif (Ctor.prototype && Ctor.prototype.render) {\n\t\tinst = new Ctor(props, context);\n\t\tComponent.call(inst, props, context);\n\t} else {\n\t\tinst = new Component(props, context);\n\t\tinst.constructor = Ctor;\n\t\tinst.render = doRender;\n\t}\n\n\twhile (i--) {\n\t\tif (recyclerComponents[i].constructor === Ctor) {\n\t\t\tinst.nextBase = recyclerComponents[i].nextBase;\n\t\t\trecyclerComponents.splice(i, 1);\n\t\t\treturn inst;\n\t\t}\n\t}\n\n\treturn inst;\n}\n\nfunction doRender(props, state, context) {\n\treturn this.constructor(props, context);\n}\n\nfunction setComponentProps(component, props, renderMode, context, mountAll) {\n\tif (component._disable) return;\n\tcomponent._disable = true;\n\n\tcomponent.__ref = props.ref;\n\tcomponent.__key = props.key;\n\tdelete props.ref;\n\tdelete props.key;\n\n\tif (typeof component.constructor.getDerivedStateFromProps === 'undefined') {\n\t\tif (!component.base || mountAll) {\n\t\t\tif (component.componentWillMount) component.componentWillMount();\n\t\t} else if (component.componentWillReceiveProps) {\n\t\t\tcomponent.componentWillReceiveProps(props, context);\n\t\t}\n\t}\n\n\tif (context && context !== component.context) {\n\t\tif (!component.prevContext) component.prevContext = component.context;\n\t\tcomponent.context = context;\n\t}\n\n\tif (!component.prevProps) component.prevProps = component.props;\n\tcomponent.props = props;\n\n\tcomponent._disable = false;\n\n\tif (renderMode !== 0) {\n\t\tif (renderMode === 1 || options.syncComponentUpdates !== false || !component.base) {\n\t\t\trenderComponent(component, 1, mountAll);\n\t\t} else {\n\t\t\tenqueueRender(component);\n\t\t}\n\t}\n\n\tapplyRef(component.__ref, component);\n}\n\nfunction renderComponent(component, renderMode, mountAll, isChild) {\n\tif (component._disable) return;\n\n\tvar props = component.props,\n\t    state = component.state,\n\t    context = component.context,\n\t    previousProps = component.prevProps || props,\n\t    previousState = component.prevState || state,\n\t    previousContext = component.prevContext || context,\n\t    isUpdate = component.base,\n\t    nextBase = component.nextBase,\n\t    initialBase = isUpdate || nextBase,\n\t    initialChildComponent = component._component,\n\t    skip = false,\n\t    snapshot = previousContext,\n\t    rendered,\n\t    inst,\n\t    cbase;\n\n\tif (component.constructor.getDerivedStateFromProps) {\n\t\tstate = extend(extend({}, state), component.constructor.getDerivedStateFromProps(props, state));\n\t\tcomponent.state = state;\n\t}\n\n\tif (isUpdate) {\n\t\tcomponent.props = previousProps;\n\t\tcomponent.state = previousState;\n\t\tcomponent.context = previousContext;\n\t\tif (renderMode !== 2 && component.shouldComponentUpdate && component.shouldComponentUpdate(props, state, context) === false) {\n\t\t\tskip = true;\n\t\t} else if (component.componentWillUpdate) {\n\t\t\tcomponent.componentWillUpdate(props, state, context);\n\t\t}\n\t\tcomponent.props = props;\n\t\tcomponent.state = state;\n\t\tcomponent.context = context;\n\t}\n\n\tcomponent.prevProps = component.prevState = component.prevContext = component.nextBase = null;\n\tcomponent._dirty = false;\n\n\tif (!skip) {\n\t\trendered = component.render(props, state, context);\n\n\t\tif (component.getChildContext) {\n\t\t\tcontext = extend(extend({}, context), component.getChildContext());\n\t\t}\n\n\t\tif (isUpdate && component.getSnapshotBeforeUpdate) {\n\t\t\tsnapshot = component.getSnapshotBeforeUpdate(previousProps, previousState);\n\t\t}\n\n\t\tvar childComponent = rendered && rendered.nodeName,\n\t\t    toUnmount,\n\t\t    base;\n\n\t\tif (typeof childComponent === 'function') {\n\n\t\t\tvar childProps = getNodeProps(rendered);\n\t\t\tinst = initialChildComponent;\n\n\t\t\tif (inst && inst.constructor === childComponent && childProps.key == inst.__key) {\n\t\t\t\tsetComponentProps(inst, childProps, 1, context, false);\n\t\t\t} else {\n\t\t\t\ttoUnmount = inst;\n\n\t\t\t\tcomponent._component = inst = createComponent(childComponent, childProps, context);\n\t\t\t\tinst.nextBase = inst.nextBase || nextBase;\n\t\t\t\tinst._parentComponent = component;\n\t\t\t\tsetComponentProps(inst, childProps, 0, context, false);\n\t\t\t\trenderComponent(inst, 1, mountAll, true);\n\t\t\t}\n\n\t\t\tbase = inst.base;\n\t\t} else {\n\t\t\tcbase = initialBase;\n\n\t\t\ttoUnmount = initialChildComponent;\n\t\t\tif (toUnmount) {\n\t\t\t\tcbase = component._component = null;\n\t\t\t}\n\n\t\t\tif (initialBase || renderMode === 1) {\n\t\t\t\tif (cbase) cbase._component = null;\n\t\t\t\tbase = diff(cbase, rendered, context, mountAll || !isUpdate, initialBase && initialBase.parentNode, true);\n\t\t\t}\n\t\t}\n\n\t\tif (initialBase && base !== initialBase && inst !== initialChildComponent) {\n\t\t\tvar baseParent = initialBase.parentNode;\n\t\t\tif (baseParent && base !== baseParent) {\n\t\t\t\tbaseParent.replaceChild(base, initialBase);\n\n\t\t\t\tif (!toUnmount) {\n\t\t\t\t\tinitialBase._component = null;\n\t\t\t\t\trecollectNodeTree(initialBase, false);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tif (toUnmount) {\n\t\t\tunmountComponent(toUnmount);\n\t\t}\n\n\t\tcomponent.base = base;\n\t\tif (base && !isChild) {\n\t\t\tvar componentRef = component,\n\t\t\t    t = component;\n\t\t\twhile (t = t._parentComponent) {\n\t\t\t\t(componentRef = t).base = base;\n\t\t\t}\n\t\t\tbase._component = componentRef;\n\t\t\tbase._componentConstructor = componentRef.constructor;\n\t\t}\n\t}\n\n\tif (!isUpdate || mountAll) {\n\t\tmounts.push(component);\n\t} else if (!skip) {\n\n\t\tif (component.componentDidUpdate) {\n\t\t\tcomponent.componentDidUpdate(previousProps, previousState, snapshot);\n\t\t}\n\t\tif (options.afterUpdate) options.afterUpdate(component);\n\t}\n\n\twhile (component._renderCallbacks.length) {\n\t\tcomponent._renderCallbacks.pop().call(component);\n\t}if (!diffLevel && !isChild) flushMounts();\n}\n\nfunction buildComponentFromVNode(dom, vnode, context, mountAll) {\n\tvar c = dom && dom._component,\n\t    originalComponent = c,\n\t    oldDom = dom,\n\t    isDirectOwner = c && dom._componentConstructor === vnode.nodeName,\n\t    isOwner = isDirectOwner,\n\t    props = getNodeProps(vnode);\n\twhile (c && !isOwner && (c = c._parentComponent)) {\n\t\tisOwner = c.constructor === vnode.nodeName;\n\t}\n\n\tif (c && isOwner && (!mountAll || c._component)) {\n\t\tsetComponentProps(c, props, 3, context, mountAll);\n\t\tdom = c.base;\n\t} else {\n\t\tif (originalComponent && !isDirectOwner) {\n\t\t\tunmountComponent(originalComponent);\n\t\t\tdom = oldDom = null;\n\t\t}\n\n\t\tc = createComponent(vnode.nodeName, props, context);\n\t\tif (dom && !c.nextBase) {\n\t\t\tc.nextBase = dom;\n\n\t\t\toldDom = null;\n\t\t}\n\t\tsetComponentProps(c, props, 1, context, mountAll);\n\t\tdom = c.base;\n\n\t\tif (oldDom && dom !== oldDom) {\n\t\t\toldDom._component = null;\n\t\t\trecollectNodeTree(oldDom, false);\n\t\t}\n\t}\n\n\treturn dom;\n}\n\nfunction unmountComponent(component) {\n\tif (options.beforeUnmount) options.beforeUnmount(component);\n\n\tvar base = component.base;\n\n\tcomponent._disable = true;\n\n\tif (component.componentWillUnmount) component.componentWillUnmount();\n\n\tcomponent.base = null;\n\n\tvar inner = component._component;\n\tif (inner) {\n\t\tunmountComponent(inner);\n\t} else if (base) {\n\t\tif (base['__preactattr_'] != null) applyRef(base['__preactattr_'].ref, null);\n\n\t\tcomponent.nextBase = base;\n\n\t\tremoveNode(base);\n\t\trecyclerComponents.push(component);\n\n\t\tremoveChildren(base);\n\t}\n\n\tapplyRef(component.__ref, null);\n}\n\nfunction Component(props, context) {\n\tthis._dirty = true;\n\n\tthis.context = context;\n\n\tthis.props = props;\n\n\tthis.state = this.state || {};\n\n\tthis._renderCallbacks = [];\n}\n\nextend(Component.prototype, {\n\tsetState: function setState(state, callback) {\n\t\tif (!this.prevState) this.prevState = this.state;\n\t\tthis.state = extend(extend({}, this.state), typeof state === 'function' ? state(this.state, this.props) : state);\n\t\tif (callback) this._renderCallbacks.push(callback);\n\t\tenqueueRender(this);\n\t},\n\tforceUpdate: function forceUpdate(callback) {\n\t\tif (callback) this._renderCallbacks.push(callback);\n\t\trenderComponent(this, 2);\n\t},\n\trender: function render() {}\n});\n\nfunction render(vnode, parent, merge) {\n  return diff(merge, vnode, {}, false, parent, false);\n}\n\nfunction createRef() {\n\treturn {};\n}\n\nvar preact = {\n\th: h,\n\tcreateElement: h,\n\tcloneElement: cloneElement,\n\tcreateRef: createRef,\n\tComponent: Component,\n\trender: render,\n\trerender: rerender,\n\toptions: options\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (preact);\n\n//# sourceMappingURL=preact.mjs.map\n\n\n//# sourceURL=webpack://preact-chrome-extension/./node_modules/preact/dist/preact.mjs?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			id: moduleId,
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/popup.jsx");
+/******/ 	
+/******/ })()
+;

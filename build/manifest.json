@@ -4,7 +4,7 @@
   "description": "",
   "version": "0.0.0.1",
   "action": {
-    "default_title": "My Chrome Extension",
+    "default_title": "My Preact Extension",
     "default_popup": "popup.html"
   }
 }
