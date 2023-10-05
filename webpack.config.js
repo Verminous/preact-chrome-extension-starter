@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
+  devtool: 'cheap-module-source-map',
   entry: {
     popup: './src/popup.jsx',
   },
